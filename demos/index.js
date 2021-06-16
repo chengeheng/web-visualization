@@ -70,7 +70,7 @@ const setupShaders = gl => {
 	}
 
 	gl.useProgram(shaderProgram);
-
+	// getAttribLocation 返回指定属性的下标
 	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(
 		shaderProgram,
 		"aVertexPosition"
