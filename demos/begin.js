@@ -11,15 +11,36 @@ const fragmentShaderSource = `
     }
 `;
 
-const main = () => {
-	/**
-	 * @type {HTMLCanvasElement}
-	 */
-	const canvas = document.getElementById("canvas");
-	const gl = canvas.getContext("webgl");
+/**
+ * @type {HTMLCanvasElement}
+ */
+const canvas = document.getElementById("canvas");
+const gl = canvas.getContext("webgl");
 
+const initShaders = (gl, VSHADER_SOURCE, FSHADER_SOURCE) => {
+	const program = gl.createProgram();
+
+	const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+	const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+
+	gl.shaderSource(vertexShader, VSHADER_SOURCE);
+	gl.shaderSource(fragmentShader, FSHADER_SOURCE);
+
+	gl.compileShader(vertexShader);
+	gl.compileShader(fragmentShader);
+
+	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, fragmentShader);
+
+	gl.linkProgram(program);
+	gl.useProgram(program);
+
+	return program;
+};
+
+const main = () => {
 	// Initialize shaders
-	if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
+	if (!initShaders(gl, vertexShaderSource, fragmentShaderSource)) {
 		console.log("Failed to intialize shaders.");
 		return;
 	}

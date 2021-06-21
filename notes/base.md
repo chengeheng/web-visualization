@@ -165,6 +165,16 @@ drawArrays 和 drawElements 是绘制图元的两个可用方法之一，而图�
 
   WebGL 中的绘制是以定义在 WebGLBuffer 对象中的顶点数据为基础的。
 
+## 使用缓冲区对象向顶点着色器传输多个顶点的步骤
+
+- 创建缓冲区对象(gl.createBuffer())
+- 绑定缓冲区对象(gl.bindBuffer())
+- 将数据写入缓冲区对象(gl.bufferData())
+- 将缓冲区对象分配给一个 attribute 变量(gl.vertexAttribPointer())
+- 开启 attribute 变量(gl.enableVertexAttribArray())
+
 ## 部分规范（待补充）
 
 - 在着色器源码中，属性名使用 `a` 前缀，可变变量使用 `v` 前缀，统一变量使用 `u` 前缀
+
+  attribute 变量传输的是那些与顶点相关的数据，而 uniform 变量传输的是那些对于所有顶点都相同（与顶点无关）的数据
