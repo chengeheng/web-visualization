@@ -98,7 +98,7 @@ const setupBuffers = gl => {
 	const vertexSizeInFloats = vertexSizeInBytes / Float32Array.BYTES_PER_ELEMENT;
 	// allocate the buffer
 	const buffer = new ArrayBuffer(nbrOfVertices * vertexSizeInFloats);
-
+	console.log(buffer);
 	// map the buffer to a Float32Array view to access the position
 	const positionView = new Float32Array(buffer);
 
