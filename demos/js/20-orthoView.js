@@ -85,7 +85,9 @@ const keydown = (keyCode, n, u_ProjMatrix, projMatrix, nf) => {
 
 const draw = (n, u_ProjMatrix, projMatrix, nf) => {
 	// 使用矩阵设置可视空间
-	projMatrix.setOrtho(-1, 1, -1, 1, g_near, g_far);
+	// projMatrix.setOrtho(-1, 1, -1, 1, g_near, g_far);
+	// projMatrix.setOrtho(-0.5, 0.5, -0.5, 0.5, 0, 0.5);
+	projMatrix.setOrtho(-0.3, 0.3, -1.0, 1.0, 0.0, 0.5);
 
 	// 将投影矩阵传给u_ProjMatrix变量
 	gl.uniformMatrix4fv(u_ProjMatrix, false, projMatrix.elements);
