@@ -6,3 +6,4 @@
 | attribute       |          | 存储限定符, 表示接下来的变量是一个 attribute 变量 |
 | texture mapping | 纹理映射 |                                                   |
 | attach          | 附加     |                                                   |
+| texCoord        | 贴图坐标 |                                                   |

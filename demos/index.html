@@ -13,15 +13,23 @@
                 margin: 10px;
                 box-shadow: 5px 5px 10px #e3e3e3;
             }
+            .canvas-2d {
+                position: absolute;
+                width: 500px;
+                height: 500px;
+                top: 18px;
+                left: 18px;
+            }
         </style>
     </head>
     <body>
         <canvas id="canvas" width="500" height="500"></canvas>
+        <!-- <canvas id="canvas-2d" width="500" height="500" class="canvas-2d"></canvas> -->
         <p id="nearFar"></p>
     </body>
     <script src="./lib/webgl-utils.js"></script>
     <script src="./lib/webgl-debug.js"></script>
     <script src="./lib/cuon-utils.js"></script>
     <script src="./lib/cuon-matrix.js"></script>
-    <script src="./js/34-joinModel.js"></script>
+    <script src="./js/40-fog.js"></script>
 </html>
