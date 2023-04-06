@@ -1,8 +1,12 @@
-import React from "react";
+import BasePractise from "./basePractise";
 import "./App.css";
 
 const App = () => {
-    return <div>aaa</div>;
+    return (
+        <div className="main">
+            <BasePractise />
+        </div>
+    );
 };
 
 export default App;
