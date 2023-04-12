@@ -1,10 +1,5 @@
-import { Configuration as WebpackConfiguration } from "webpack";
-import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import { Configuration } from "webpack";
 import WebpackBar from "webpackbar";
-
-interface Configuration extends WebpackConfiguration {
-    devServer?: WebpackDevServerConfiguration;
-}
 
 const path = require("path");
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
@@ -123,14 +118,6 @@ const config: Configuration = {
     resolve: {
         // 自动补全文件扩展名
         extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-    },
-
-    devServer: {
-        host: "localhost",
-        port: 4000,
-        open: true,
-        hot: true,
-        historyApiFallback: true, // 解决前端路由刷新404的问题
     },
 };
 
