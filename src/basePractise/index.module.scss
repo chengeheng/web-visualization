@@ -6,19 +6,27 @@
     .slider {
         width: 230px;
         padding: 10px;
-        border-right: 1px solid #e1e1e1;
 
         .sliderItem {
             height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
         }
     }
 
     .demo {
-        width: 530px;
+        width: 500px;
+        padding: 15px;
+        overflow: overlay;
+    }
+
+    .keycode {
+        flex: 1;
         padding: 15px;
     }
 
-    .keyCode {
-        flex: 1;
+    & > :not(:first-child) {
+        border-left: 1px solid #e1e1e1;
     }
 }

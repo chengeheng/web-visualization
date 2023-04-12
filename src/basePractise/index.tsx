@@ -1,4 +1,5 @@
 import { useState, useMemo, lazy, Suspense } from "react";
+import ReactMarkdown from "react-markdown";
 
 import routes from "./route";
 
@@ -34,7 +35,9 @@ const BasePractise = () => {
                     <Cmp />
                 </Suspense>
             </div>
-            <div className={styles.keycode}>{keyCode}</div>
+            <div className={styles.keycode}>
+                <ReactMarkdown children={keyCode!} />
+            </div>
         </div>
     );
 };
