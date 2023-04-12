@@ -65,6 +65,11 @@ const config: Configuration = {
                         test: /\.styl$/,
                         use: getStyleLoaders("stylus-loader"),
                     },
+                    {
+                        // 处理glsl
+                        test: /\.(frag|vert)$/,
+                        use: "./loaders/glslLoader.js",
+                    },
                     // 处理图片
                     {
                         test: /\.(jpe?g|png|gif|webp|svg)/,

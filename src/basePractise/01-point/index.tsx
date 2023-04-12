@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import vShaderSource from "./index.vert";
+import fShaderSource from "./index.frag";
 
 const Point = () => {
     useEffect(() => {
@@ -8,36 +10,10 @@ const Point = () => {
         var gl = canvas.getContext("webgl")!;
 
         //顶点着色器源码
-        var vertexShaderSource = `
-            #pragma vscode_glsllint_stage: vert
-            void main(){ 
-                gl_PointSize=20.;
-                gl_Position=vec4(0.,0.,0.,1.);
-            }
-        `;
-
-        // "#pragma vscode_glsllint_stage: vert" +
-        //     "void main(){" +
-        //     //给内置变量gl_PointSize赋值像素大小
-        //     "   gl_PointSize=20.0;" +
-        //     //顶点位置，位于坐标原点
-        //     "   gl_Position =vec4(0.0,0.0,0.0,1.0);" +
-        //     "}";
+        var vertexShaderSource = vShaderSource;
 
         //片元着色器源码
-        var fragShaderSource = `
-            #pragma vscode_glsllint_stage: frag
-            void main(){
-                //定义片元颜色
-                gl_FragColor = vec4(1.0,0.0,0.0,1.0);
-            }
-        `;
-
-        // "#pragma vscode_glsllint_stage: frag" +
-        //     "void main(){" +
-        //     //定义片元颜色
-        //     "   gl_FragColor = vec4(1.0,0.0,0.0,1.0);" +
-        //     "}";
+        var fragShaderSource = fShaderSource;
 
         //初始化着色器
         initShader(gl, vertexShaderSource, fragShaderSource);
