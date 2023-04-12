@@ -1,0 +1,20 @@
+Language:        Cpp
+Standard: Auto
+ColumnLimit:     120
+
+IndentWidth: 4
+
+#花括号包裹方式
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterEnum: true
+  AfterStruct: true
+  AfterFunction : true
+
+#对齐方式
+AlignConsecutiveAssignments: AcrossEmptyLinesAndComments
+
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: true
