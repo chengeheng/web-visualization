@@ -114,6 +114,7 @@ const config: Configuration = {
         }),
         new ReactRefreshWebpackPlugin(),
     ],
+    stats: "errors-warnings",
     mode: "development",
     devtool: "eval-cheap-module-source-map",
     optimization: {

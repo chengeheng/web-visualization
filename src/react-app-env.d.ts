@@ -10,3 +10,5 @@ declare module "*.frag" {
 declare module "*.vert" {
     export default string;
 }
+declare module "react-syntax-highlighter/dist/esm/styles/prism";
+declare module "react-syntax-highlighter";

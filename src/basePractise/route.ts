@@ -1,7 +1,9 @@
+import BasePoint from "./point/basePoint";
+
 const routes = [
     {
-        component: () => import("./01-point/index"),
-        keyCode: "aaa",
+        component: BasePoint.component,
+        keyCode: BasePoint.keyCode,
         title: "点显示",
         key: "point",
     },
