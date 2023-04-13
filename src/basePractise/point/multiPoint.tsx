@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import vShaderSource from "./basePoint.vert";
-import fShaderSource from "./basePoint.frag";
+import vShaderSource from "./multiPoint.vert";
+import fShaderSource from "./multiPoint.frag";
 import { transform2Markdown } from "../util";
 
 //声明初始化着色器函数
@@ -30,28 +30,56 @@ function initShader(gl: WebGLRenderingContext, vertexShaderSource: string, fragm
     return program;
 }
 
-const BasePoint = () => {
+const MultiPoint = () => {
     useEffect(() => {
         //通过getElementById()方法获取canvas画布
         var canvas = document.getElementById("canvas")! as HTMLCanvasElement;
         //通过方法getContext()获取WebGL上下文
         var gl = canvas.getContext("webgl")!;
+
         //顶点着色器源码
         var vertexShaderSource = vShaderSource;
-
         //片元着色器源码
         var fragShaderSource = fShaderSource;
-
         //初始化着色器
-        initShader(gl, vertexShaderSource, fragShaderSource);
-        //开始绘制，显示器显示结果
-        gl.drawArrays(gl.POINTS, 0, 1);
+        const program = initShader(gl, vertexShaderSource, fragShaderSource);
+
+        // prettier-ignore
+        const vertices = new Float32Array([
+             0.5, 0.5,
+            -0.5,-0.5,
+             0.5,-0.5,
+            -0.5, 0.5
+        ]);
+        const n = 3;
+
+        const vertexBuffer = gl.createBuffer();
+        // 将缓冲区对象绑定到目标
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+        // 向缓冲区对象中写入数据
+        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+        const a_Position = gl.getAttribLocation(program, "a_Position");
+        // 将缓冲区对象分配给a_Position变量
+        gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 8);
+        // 连接a_Position变量与分配给它的缓冲区对象
+        gl.enableVertexAttribArray(a_Position);
+
+        const a_PointSize = gl.getAttribLocation(program, "a_PointSize");
+
+        // 将顶点位置传输给attribute变量
+        gl.vertexAttrib1f(a_PointSize, 5.0);
+
+        gl.clearColor(1, 1, 1, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        // TODO 没法显示4个点，应该是参数错误
+        gl.drawArrays(gl.POINTS, 0, n);
     }, []);
     return <canvas style={{ width: "500px", height: "500px" }} width={500} height={500} id="canvas"></canvas>;
 };
 
-const basePoint = {
-    component: BasePoint,
+const multiPoint = {
+    component: MultiPoint,
     keyCode: `
     \r## 顶点着色器代码
     \r${transform2Markdown(vShaderSource)}
@@ -60,4 +88,4 @@ const basePoint = {
     `,
 };
 
-export default basePoint;
+export default multiPoint;
