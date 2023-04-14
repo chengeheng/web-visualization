@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import vShaderSource from "./basePoint.vert";
-import fShaderSource from "./basePoint.frag";
-import { transform2Markdown } from "../util";
+import vShaderSource from "./index.vert";
+import fShaderSource from "./index.frag";
+import { transform2Markdown } from "../../util";
 
 //声明初始化着色器函数
 function initShader(gl: WebGLRenderingContext, vertexShaderSource: string, fragmentShaderSource: string) {

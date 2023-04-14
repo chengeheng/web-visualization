@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkCold } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import routes from "./route";
+import routes from "@/basePractise/route";
 
 import styles from "./index.module.scss";
 
@@ -23,11 +23,7 @@ const BasePractise = () => {
             <div className={styles.slider}>
                 {routes.map((i, index) => {
                     return (
-                        <div
-                            className={styles.sliderItem}
-                            key={i.key}
-                            onClick={() => setActiveKey(i.key)}
-                        >
+                        <div className={styles.sliderItem} key={i.key} onClick={() => setActiveKey(i.key)}>
                             <span>{`${index + 1} - ${i.title}`}</span>
                         </div>
                     );

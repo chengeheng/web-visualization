@@ -1,15 +1,15 @@
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
-import WebpackBar from "webpackbar";
-
-interface Configuration extends WebpackConfiguration {
-    devServer?: WebpackDevServerConfiguration;
-}
-
+// import WebpackBar from "webpackbar";
+const WebpackBar = require("webpackbar");
 const path = require("path");
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+
+interface Configuration extends WebpackConfiguration {
+    devServer?: WebpackDevServerConfiguration;
+}
 
 // 返回处理样式loader的函数
 const getStyleLoaders = (pre?: string): any => {
@@ -70,6 +70,33 @@ const config: Configuration = {
                         test: /\.(frag|vert)$/,
                         use: "./loaders/glslLoader.js",
                     },
+                    // 处理svg
+                    {
+                        test: /\.svg$/,
+                        use: [
+                            {
+                                loader: "@svgr/webpack",
+                                options: {
+                                    prettier: false,
+                                    svgo: false,
+                                    svgoConfig: {
+                                        plugins: [{ removeViewBox: false }],
+                                    },
+                                    titleProp: true,
+                                    ref: true,
+                                },
+                            },
+                            {
+                                loader: "file-loader",
+                                options: {
+                                    name: "static/media/[name].[hash].[ext]",
+                                },
+                            },
+                        ],
+                        issuer: {
+                            and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
+                        },
+                    },
                     // 处理图片
                     {
                         test: /\.(jpe?g|png|gif|webp|svg)/,
@@ -129,6 +156,9 @@ const config: Configuration = {
     resolve: {
         // 自动补全文件扩展名
         extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+        alias: {
+            "@": path.join(__dirname, "../src"),
+        },
     },
 
     devServer: {
