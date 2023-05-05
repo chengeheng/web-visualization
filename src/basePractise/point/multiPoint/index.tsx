@@ -51,7 +51,7 @@ const MultiPoint = () => {
              0.5,-0.5,
             -0.5, 0.5
         ]);
-        const n = 3;
+        const n = 4;
 
         const vertexBuffer = gl.createBuffer();
         // 将缓冲区对象绑定到目标
@@ -61,7 +61,8 @@ const MultiPoint = () => {
 
         const a_Position = gl.getAttribLocation(program, "a_Position");
         // 将缓冲区对象分配给a_Position变量
-        gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 8);
+        // 最后一个变量设置从哪个点开始读当前的坐标
+        gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
         // 连接a_Position变量与分配给它的缓冲区对象
         gl.enableVertexAttribArray(a_Position);
 
@@ -75,7 +76,14 @@ const MultiPoint = () => {
         // TODO 没法显示4个点，应该是参数错误
         gl.drawArrays(gl.POINTS, 0, n);
     }, []);
-    return <canvas style={{ width: "500px", height: "500px" }} width={500} height={500} id="canvas"></canvas>;
+    return (
+        <canvas
+            style={{ width: "500px", height: "500px", boxShadow: "3px 3px 6px #e1e1e1" }}
+            width={500}
+            height={500}
+            id="canvas"
+        ></canvas>
+    );
 };
 
 const multiPoint = {
