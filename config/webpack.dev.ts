@@ -36,7 +36,8 @@ const getStyleLoaders = (pre?: string): any => {
 const config: Configuration = {
     entry: "./src/index.tsx",
     output: {
-        path: undefined,
+        path: path.resolve(__dirname, "build"),
+        publicPath: "/",
         filename: "static/js/[name].js",
         chunkFilename: "static/js/[name].chunk.js",
         assetModuleFilename: "static/media/[hash:10][ext][query]",
@@ -164,9 +165,11 @@ const config: Configuration = {
     devServer: {
         host: "localhost",
         port: 4000,
-        open: true,
+        // open: true,
         hot: true,
-        historyApiFallback: true, // 解决前端路由刷新404的问题
+        historyApiFallback: {
+            index: "http://127.0.0.1:4000/",
+        }, // 解决前端路由刷新404的问题
     },
 };
 

@@ -3,26 +3,22 @@ import { useLocation, useNavigate, useRoutes } from "react-router-dom";
 import { Menu } from "antd";
 import type { MenuProps } from "antd";
 
-import routes from "./route";
+import { route, routes } from "./route";
 
 import styles from "./index.module.scss";
 
-const menus: MenuProps["items"] = routes
-    .filter((i) => i.path !== "*")
-    .map((i) => {
-        return {
-            label: i.id!,
-            key: i.path!,
-            keypath: i.path,
-        };
-    });
+const menus: MenuProps["items"] = route.map((i) => {
+    return {
+        label: i.title!,
+        key: i.path!,
+        keypath: i.path,
+    };
+});
 
 const Main: FC = () => {
     const element = useRoutes(routes);
-
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location);
 
     const activeKey = useMemo(() => {
         const { pathname } = location;
@@ -33,15 +29,7 @@ const Main: FC = () => {
     return (
         <div className={styles.main}>
             <div className={styles.header}>
-                <Menu
-                    selectedKeys={[activeKey]}
-                    onClick={(e) => {
-                        console.log(e);
-                        navigate(e.key);
-                    }}
-                    mode="horizontal"
-                    items={menus}
-                />
+                <Menu selectedKeys={[activeKey]} onClick={(e) => navigate(e.key)} mode="horizontal" items={menus} />
             </div>
             <div className={styles.content}>{element}</div>
         </div>

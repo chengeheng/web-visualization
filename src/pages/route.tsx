@@ -3,13 +3,13 @@ import { lazy, Suspense } from "react";
 
 const route = [
     {
-        path: "webgl",
-        id: "webgl",
+        path: "/webgl/*",
+        title: "webgl",
         element: lazy(() => import("./webgl")),
     },
     {
-        path: "threejs",
-        id: "threejs",
+        path: "/threejs",
+        title: "threejs",
         element: lazy(() => import("./threejs")),
     },
 ];
@@ -27,7 +27,7 @@ const routes: RouteObject[] = route.map((i) => {
 
 routes.push({
     path: "*",
-    element: <Navigate to={route[0]?.path} />,
+    element: <Navigate to={routes[0].path!} />,
 });
 
-export default routes;
+export { route, routes };
