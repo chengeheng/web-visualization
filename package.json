@@ -17,6 +17,7 @@
         "url": "git+https://github.com/chengeheng/WebGL-Notes.git"
     },
     "dependencies": {
+        "antd": "^5.4.6",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-markdown": "^8.0.7",
