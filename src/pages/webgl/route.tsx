@@ -1,15 +1,24 @@
 import { RouteObject, Navigate } from "react-router-dom";
 
-import Square from "./ch01-Square";
+import Square from "./ch02-Square";
+import RenderingModes from "./ch02-RenderingModes";
 
 const route = [
     {
-        chapter: "01",
+        chapter: "02",
         path: "square",
         id: "square",
         element: <Square.Component />,
         vertex: Square.vertex,
         fragment: Square.fragment,
+    },
+    {
+        chapter: "02",
+        path: "renderingModes",
+        id: "renderingModes",
+        element: <RenderingModes.Component />,
+        vertex: RenderingModes.vertex,
+        fragment: RenderingModes.fragment,
     },
     // {
     //     chapter: "01",

@@ -31,11 +31,11 @@
             width: 700px;
             margin-left: 20px;
 
-            & > canvas {
+            & canvas {
                 width: 500px;
                 height: 500px;
                 margin: 10px;
-                box-shadow: 3px 3px 6px #e1e1e1;
+                box-shadow: 5px 5px 6px #bababa;
             }
         }
     }

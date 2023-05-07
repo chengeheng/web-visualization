@@ -10,8 +10,7 @@ import styles from "./index.module.scss";
 const menus: MenuProps["items"] = route.map((i) => {
     return {
         label: i.title!,
-        key: i.path!,
-        keypath: i.path,
+        key: i.title!,
     };
 });
 
@@ -22,9 +21,11 @@ const Main: FC = () => {
 
     const activeKey = useMemo(() => {
         const { pathname } = location;
-        const item = routes.find((i) => pathname.indexOf(`/${i.path!.split("*")[0]}`) > -1);
-        return item?.path!;
+        const item = route.find((i) => pathname.indexOf(`/${i.title!.split("*")[0]}`) > -1);
+        return item?.title!;
     }, [location]);
+
+    console.log(activeKey);
 
     return (
         <div className={styles.main}>
