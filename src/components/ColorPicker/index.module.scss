@@ -1,0 +1,23 @@
+.main {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+
+    .left {
+        flex: 1;
+    }
+
+    .right {
+        width: 310px;
+        padding: 0 5px;
+        display: flex;
+        flex-direction: column;
+
+        .canvas {
+            width: 300px;
+            height: 200px;
+            box-shadow: 1px 2px 4px #e1e1e1;
+        }
+    }
+}

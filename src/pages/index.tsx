@@ -25,8 +25,6 @@ const Main: FC = () => {
         return item?.title!;
     }, [location]);
 
-    console.log(activeKey);
-
     return (
         <div className={styles.main}>
             <div className={styles.header}>

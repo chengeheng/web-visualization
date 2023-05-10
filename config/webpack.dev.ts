@@ -14,8 +14,31 @@ interface Configuration extends WebpackConfiguration {
 // 返回处理样式loader的函数
 const getStyleLoaders = (pre?: string): any => {
     return [
-        "style-loader",
-        "css-loader",
+        { loader: "style-loader" },
+        //         {test: /\.css$/i,
+        //          // 匹配.css后缀的文件
+        //          use: [{loader: "style-loader"},
+        //          {loader: "css-loader",
+        //          options: {
+        //             /**** 需要解决的问题* 全局污染* 命名混乱* 依赖管理不彻底* 无法共享变量* 代码压缩不彻底*/
+        //             modules: {
+        //                  // 启用 css modules, css模块化, 所有类名都默认为当前组件, 或者使用 :global 声明全局样式, 参考 AntDesignPro 的样式引用
+        //                  localIdentName: '[name]__[local]--[hash:base64:5]'
+        //                  // 指定样式名},  }}]}
+        // ,
+        {
+            loader: "css-loader",
+            options: {
+                // 启用/禁用 CSS 模块及其配置 默认为true
+                /**** 需要解决的问题* 全局污染* 命名混乱* 依赖管理不彻底* 无法共享变量* 代码压缩不彻底*/
+                modules: {
+                    // localIdentName: "[name]__[local]--[hash:base64:5]",
+                    localIdentName: "[name]-[local]--[hash:base64:5]",
+                },
+                //启用/禁用 @import 规则进行处理 默认为true 不需填写
+                // import: true,
+            },
+        },
         {
             // 解决兼容性问题
             // 配合package.json中的browserslist来指定兼容性
@@ -26,8 +49,8 @@ const getStyleLoaders = (pre?: string): any => {
                 },
             },
         },
-        pre,
-    ].filter(Boolean);
+        { loader: pre },
+    ].filter((i) => i.loader);
 };
 
 /**
