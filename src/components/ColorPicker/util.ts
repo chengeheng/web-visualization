@@ -34,6 +34,31 @@ const drawCircle: (ctx: CanvasRenderingContext2D, x: number, y: number) => void 
     ctx.restore();
 };
 
+const drawPickerBg: (ctx: CanvasRenderingContext2D) => void = (ctx) => {
+    ctx.save();
+    const width = ctx.canvas.width;
+    const height = ctx.canvas.height;
+    const linearGradient = ctx.createLinearGradient(0, 0, 0, height);
+    linearGradient.addColorStop(0, "rgb(255, 0, 0)");
+    linearGradient.addColorStop(0.17, "rgb(255, 0, 255)");
+    linearGradient.addColorStop(0.34, "rgb(0, 0, 255)");
+    linearGradient.addColorStop(0.5, "rgb(0, 255, 255)");
+    linearGradient.addColorStop(0.67, "rgb(0, 255, 0)");
+    linearGradient.addColorStop(0.84, "rgb(255, 255, 0)");
+    linearGradient.addColorStop(1, "rgb(255, 0, 0)");
+    ctx.fillStyle = linearGradient;
+    ctx.fillRect(0, 0, width, height);
+    ctx.restore();
+};
+
+const drawSelectBar: (ctx: CanvasRenderingContext2D, position: number) => void = (ctx, position) => {
+    ctx.save();
+    const width = ctx.canvas.width;
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, position - 2, width, 4);
+    ctx.restore();
+};
+
 const calcuateColor: (x: number, y: number, width: number, height: number, color: string) => string = (
     x,
     y,
@@ -51,6 +76,23 @@ const calcuateColor: (x: number, y: number, width: number, height: number, color
     );
 };
 
+const calcuatePickerColor: (position: number, height: number) => string = (position, height) => {
+    const percent = position / height;
+    if (percent <= 0.17) {
+        return rgb2hue(255, 0, (255 * percent) / 0.17);
+    } else if (percent <= 0.34) {
+        return rgb2hue(255 - (255 * (percent - 0.17)) / 0.17, 0, 255);
+    } else if (percent <= 0.5) {
+        return rgb2hue(0, (255 * (percent - 0.34)) / 0.16, 255);
+    } else if (percent <= 0.67) {
+        return rgb2hue(0, 255, 255 - (255 * (percent - 0.5)) / 0.17);
+    } else if (percent <= 0.84) {
+        return rgb2hue((255 * (percent - 0.67)) / 0.17, 255, 0);
+    } else {
+        return rgb2hue(255, 255 - (255 * (percent - 0.84)) / 0.16, 0);
+    }
+};
+
 const rgb2hue: (r: number, g: number, b: number) => string = (r, g, b) => {
     const hex = "#" + ((1 << 24) + (Math.round(r) << 16) + (Math.round(g) << 8) + Math.round(b)).toString(16).slice(1);
     return hex;
@@ -64,4 +106,4 @@ const hue2rgb: (color: string) => [number, number, number] = (color) => {
     return [parseInt(a, 16), parseInt(b, 16), parseInt(c, 16)];
 };
 
-export { drawBg, drawCircle, rgb2hue, calcuateColor, hue2rgb };
+export { drawBg, drawCircle, drawPickerBg, drawSelectBar, rgb2hue, calcuatePickerColor, calcuateColor, hue2rgb };

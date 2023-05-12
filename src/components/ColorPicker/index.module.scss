@@ -9,7 +9,7 @@
     }
 
     .right {
-        width: 385px;
+        width: 365px;
         padding: 0 5px;
         display: flex;
         flex-direction: column;
@@ -47,19 +47,25 @@
             }
 
             .picker {
-                width: 40px;
+                width: 25px;
                 height: 200px;
-                background: linear-gradient(
-                    to bottom,
-                    rgb(255, 0, 0) 0%,
-                    rgb(255, 0, 255) 17%,
-                    rgb(0, 0, 255) 34%,
-                    rgb(0, 255, 255) 50%,
-                    rgb(0, 255, 0) 67%,
-                    rgb(255, 255, 0) 84%,
-                    rgb(255, 0, 0) 100%
-                );
+                box-shadow: 1px 2px 4px #e1e1e1;
             }
+
+            // .picker {
+            //     width: 25px;
+            //     height: 200px;
+            //     background: linear-gradient(
+            //         to bottom,
+            //         rgb(255, 0, 0) 0%,
+            //         rgb(255, 0, 255) 17%,
+            //         rgb(0, 0, 255) 34%,
+            //         rgb(0, 255, 255) 50%,
+            //         rgb(0, 255, 0) 67%,
+            //         rgb(255, 255, 0) 84%,
+            //         rgb(255, 0, 0) 100%
+            //     );
+            // }
         }
     }
 }
