@@ -1,5 +1,5 @@
 .main {
-    width: 500px;
+    width: 600px;
     height: 300px;
     display: flex;
     flex-direction: row;
@@ -9,15 +9,57 @@
     }
 
     .right {
-        width: 310px;
+        width: 385px;
         padding: 0 5px;
         display: flex;
         flex-direction: column;
 
-        .canvas {
-            width: 300px;
-            height: 200px;
-            box-shadow: 1px 2px 4px #e1e1e1;
+        .top {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .color {
+                width: 40px;
+                height: 40px;
+            }
+
+            .text {
+                flex: 1;
+                margin-left: 10px;
+                height: 36px;
+                line-height: 36px;
+                cursor: pointer;
+            }
+        }
+
+        .bottom {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .canvas {
+                width: 300px;
+                height: 200px;
+                box-shadow: 1px 2px 4px #e1e1e1;
+            }
+
+            .picker {
+                width: 40px;
+                height: 200px;
+                background: linear-gradient(
+                    to bottom,
+                    rgb(255, 0, 0) 0%,
+                    rgb(255, 0, 255) 17%,
+                    rgb(0, 0, 255) 34%,
+                    rgb(0, 255, 255) 50%,
+                    rgb(0, 255, 0) 67%,
+                    rgb(255, 255, 0) 84%,
+                    rgb(255, 0, 0) 100%
+                );
+            }
         }
     }
 }
